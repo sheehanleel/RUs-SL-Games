@@ -134,8 +134,6 @@ class LinkedList:
             return self.head
         """
         
-        
-        
         if current == self.head: # Delete if the node is the head
             self.head = current.next
             if self.head:
