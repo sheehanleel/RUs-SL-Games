@@ -1,5 +1,4 @@
 from app.node import Node
-from app.player import Player
 
 class LinkedList:
     def __init__(self):
@@ -117,7 +116,7 @@ class LinkedList:
         del self.head
         self.head = new_head
 
-    def delete_at_postion(self, target_uid):
+    def delete_at_position(self, target_uid):
         #Delete a node at a position on the list
         if self.head is None:
             return None
@@ -129,9 +128,13 @@ class LinkedList:
                 break
             current = current.next
         
+        """
         if target_uid < 0: #Check
             print("Invalid UID")
             return self.head
+        """
+        
+        
         
         if current == self.head: # Delete if the node is the head
             self.head = current.next

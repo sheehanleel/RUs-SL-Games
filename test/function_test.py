@@ -85,14 +85,14 @@ class TestLinkedList(unittest.TestCase):
         expected = "Player: Brian - uid: 5 <-> Player: Lee - uid: 2 <-> None"
         self.assertEqual(output, expected)
     
-    def test_delete_at_postion_forwards(self):
-        self.ll.delete_at_postion(2)
+    def test_delete_at_position_forwards(self):
+        self.ll.delete_at_position(2)
         output = self.ll.traverse()
         expected = "Player: Chrissandra - uid: 1 <-> Player: Brian - uid: 5 <-> None"
         self.assertEqual(output, expected)
     
-    def test_delete_at_postion_backwards(self):
-        self.ll.delete_at_postion(2)
+    def test_delete_at_position_backwards(self):
+        self.ll.delete_at_position(2)
         output = self.ll.traverse_backwards()
         expected = "Player: Brian - uid: 5 <-> Player: Chrissandra - uid: 1 <-> None"
         self.assertEqual(output, expected)
