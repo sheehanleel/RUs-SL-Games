@@ -1,5 +1,5 @@
 from app.linked_list import LinkedList
-from player import Player
+from app.player import Player
 
 class PlayerHashMap:
     size = 10
