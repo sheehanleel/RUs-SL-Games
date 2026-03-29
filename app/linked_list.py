@@ -128,12 +128,6 @@ class LinkedList:
                 break
             current = current.next
         
-        """
-        if target_uid < 0: #Check
-            print("Invalid UID")
-            return self.head
-        """
-        
         if current == self.head: # Delete if the node is the head
             self.head = current.next
             if self.head:
