@@ -1,4 +1,5 @@
 from app.node import Node
+from app.player import Player
 
 class LinkedList:
     def __init__(self):
