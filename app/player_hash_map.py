@@ -119,6 +119,6 @@ class PlayerHashMap:
                 continue
 
             # Go through the linked list and print each players
-            while current is None:
+            while current is not None:
                 print(f" {current.player}")
                 current = current.next
