@@ -1,4 +1,4 @@
-from linked_list import LinkedList
+from app.linked_list import LinkedList
 from player import Player
 
 class PlayerHashMap:
