@@ -1,7 +1,8 @@
 class Player:
-    def __init__(self, uid, name):
+    def __init__(self, uid, name, score=0):
         self.uid = uid
         self.name = name
+        self.score = score #default to zero
 
     @property
     def uid(self):
@@ -19,9 +20,21 @@ class Player:
     def name(self, value):
         self._name = value
 
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        self._score = value
+
     def __str__(self):
-        dispay_player = f"Player: {self.name} - uid: {self.uid}"
-        return dispay_player
+        display_player = f"Player: {self.name} - uid: {self.uid}"
+        return display_player
+
+    def __repr__(self):
+        display_player = f"Player: {self.name} - uid: {self.uid}, score: {self.score}"
+        return display_player
     
     @classmethod
     def hash_uid(cls, key: str) -> int: #Take the UID of the player and create a HASH
