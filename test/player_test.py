@@ -1,5 +1,6 @@
 import unittest
 from app.player import Player
+import random
 
 
 class TestPlayerFunction(unittest.TestCase):
@@ -52,6 +53,12 @@ class TestPlayerFunction(unittest.TestCase):
 
         self.assertListEqual(sorted_players, manually_sorted_players)
 
+    def test_1000_players(self):
+        players = [Player(f"{i:03}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
+
+        sorted_players = Player.sort_players(players)
+
+        self.assertListEqual(sorted_players, sorted(players))
 
 if __name__ == "__main__":
     unittest.main()
