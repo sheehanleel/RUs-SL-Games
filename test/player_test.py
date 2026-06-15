@@ -13,8 +13,8 @@ class TestPlayerFunction(unittest.TestCase):
         return
 
     def test_sort_players(self):
-        players = [Player("01", "Alice", score=10), Player("02", "Bob", score=5),
-                   Player("03", "Charlie", score=15)]
+        players = [Player("01", "Alice", 10), Player("02", "Bob", 5),
+                   Player("03", "Charlie", 15)]
         # note: ensure initialization code is valid for **your** implementation.
         # For example, is your parameter called uid? is the first parameter name?
 
@@ -22,10 +22,20 @@ class TestPlayerFunction(unittest.TestCase):
         sorted_players = sorted(players)
 
         # players must be sorted by score as shown here:
-        manually_sorted_players = [Player("02", "Bob", score=5), Player("01", "Alice", score=10),
-                                   Player("03", "Charlie", score=15)]
+        manually_sorted_players = [Player("02", "Bob", 5), Player("01", "Alice", 10),
+                                   Player("03", "Charlie", 15)]
 
         self.assertListEqual(sorted_players, manually_sorted_players)
+
+    def test_players_can_be_compared_by_score(self):
+        # note: ensure initialization code is valid for **your** implementation
+        alice = Player("01", "Alice", 10)
+        bob = Player("01", "Bob", 5)
+
+        # Add the appropriate expression to the following assert test
+        self.assertTrue(alice > bob)
+        # or, event better
+        self.assertGreater(alice, bob)
 
 
 if __name__ == "__main__":

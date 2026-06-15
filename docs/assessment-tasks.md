@@ -97,14 +97,29 @@ def test_sort_players(self):
 What was the outcome of running the above unit test, copy paste the output **for just this particular test** below:
 
 ```text
-Copy the traceback you got when you ran the test here.
+FAILED             [ 95%]
+player_test.py:15 (TestPlayerFunction.test_sort_players)
+self = <test.player_test.TestPlayerFunction testMethod=test_sort_players>
+
+    def test_sort_players(self):
+        players = [Player("01", "Alice", 10), Player("02", "Bob", 5),
+                   Player("03", "Charlie", 15)]
+        # note: ensure initialization code is valid for **your** implementation.
+        # For example, is your parameter called uid? is the first parameter name?
+    
+        # do **not** change the following code:
+>       sorted_players = sorted(players)
+                         ^^^^^^^^^^^^^^^
+E       TypeError: '<' not supported between instances of 'Player' and 'Player'
+
+player_test.py:22: TypeError
 ```
 
 ### 4.3. Success criteria
 
-- [ ] Unit test added to `test_player.py`
-- [ ] Unit test output provided
-- [ ] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
+- [x] Unit test added to `test_player.py`
+- [x] Unit test output provided
+- [x] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
 
 #### 4.3.1. Question: What dunder method is required for Python to sort players?
 
@@ -115,7 +130,7 @@ What is the **only** magic method that must be implemented in the player class f
 **Hint:** if you don't recall this from class, the error message you got when you ran the test will help you.
 -------
 > Answer Here
-> Yes, here - instead of this text!
+> The dunder method that will help me sort the players by their score is '--lt--" (it' an underscore) means less than thus this sorts the list by score from low to high
 -------
 #### 4.3.2. Task: Implement the magic method in the Player class
 
@@ -136,7 +151,20 @@ def test_players_can_be_compared_by_score(self):
 Run the test and confirm that your error resembles the previous error
 
 ```text
-INSERT ERROR OUTPUT HERE
+test/player_test.py:30 (TestPlayerFunction.test_players_can_be_compared_by_score)
+self = <test.player_test.TestPlayerFunction testMethod=test_players_can_be_compared_by_score>
+
+    def test_players_can_be_compared_by_score(self):
+        # note: ensure initialization code is valid for **your** implementation
+        alice = Player("01", "Alice", 10)
+        bob = Player("01", "Bob", 5)
+    
+        # Add the appropriate expression to the following assert test
+>       self.assertTrue(alice < bob)
+                        ^^^^^^^^^^^
+E       TypeError: '<' not supported between instances of 'Player' and 'Player'
+
+test/player_test.py:36: TypeError
 ```
 
 - Implement the appropriate magic method in the Player class and ensure you pass this test
@@ -145,12 +173,12 @@ INSERT ERROR OUTPUT HERE
 
 #### 4.3.3. Success criteria
 
-- [ ] Unit test added to `test_player.py`
-- [ ] Magic method implemented in `Player` class
-- [ ] Initial Failed Unit test output provided
-- [ ] Unit test runs successfully with submitted code
-- [ ] Dunder method not employed directly
-- [ ] At least one commit capturing the above changes
+- [X] Unit test added to `test_player.py`
+- [X] Magic method implemented in `Player` class
+- [X] Initial Failed Unit test output provided
+- [X] Unit test runs successfully with submitted code
+- [X] Dunder method not employed directly
+- [X] At least one commit capturing the above changes
 
 #### 4.3.4. Task: Are we sorted yet?
 
@@ -164,16 +192,16 @@ Your output here
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to do so - if that's the case, you need to figure out what that is!)?
 -------
 > Answer here
->
+> The equality comparison did not fail because of the dunder method '__--lt--__' in the player class
 -------
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
 
 #### 4.3.5. Success criteria
 
-- [ ] Correct explanation of why `test_sort_players` failed/passed
-- [ ] Correct implementation of the magic method in the `Player` class
-- [ ] `test_sort_players` passes when run against the submitted code
-- [ ] At least one commit capturing the above changes
+- [x] Correct explanation of why `test_sort_players` failed/passed
+- [x] Correct implementation of the magic method in the `Player` class
+- [x] `test_sort_players` passes when run against the submitted code
+- [x] At least one commit capturing the above changes
 
 ## 5. Implement a custom sorting algorithm
 

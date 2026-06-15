@@ -54,3 +54,6 @@ class Player:
     
     def __eq__(self, other):
         return self.uid == other.uid
+
+    def __lt__(self, other):
+        return self.score < other.score
