@@ -192,7 +192,8 @@ Your output here
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to do so - if that's the case, you need to figure out what that is!)?
 -------
 > Answer here
-> The equality comparison did not fail because of the dunder method '__--lt--__' in the player class
+> The equality comparison did not fail because of the dunder method '__--lt--__' in the player class.
+> In the test, the code used sorted then with the implementation of the magic method it sorted it correctly
 -------
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
 
@@ -234,7 +235,8 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+> The expected time of the above algorithm is very efficient because if the players doubles then it will only run only 1 extra round of sorting but if the pivot is always the smallest
+> or largest it sort every run. In regards of space, roughly need as much extra memory as the size of the list.
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -250,15 +252,29 @@ Include your code below:
 
 ```python
 # YOUR CUSTOM Sorting here
+# Use the same classmethod in hash_uid
+    @classmethod
+    def sort_players(cls, players): # Update the variable names to make it clear and descriptive
+        if len(players) <= 1:
+            return players
+        pivot = players[0]
+        left = []
+        right = []
+        for player in players[1:]:
+            if player < pivot:
+                left.append(player)
+            else:
+                right.append(player)
+        return Player.sort_players(left) + [pivot] + Player.sort_players(right)
 ```
 
 #### 5.2.3. Success criteria
 
-- [ ] Custom sorting algorithm implemented in the `Player` class as `classmethod`
-- [ ] Custom sorting algorithm sorts in descending order
-- [ ] Custom sorting algorithm compares players using their score (via the rich comparison operators)
-- [ ] Custom sorting algorithm tested in `test_player.py` and tests passed
-- [ ] At least one commit capturing the above changes
+- [x] Custom sorting algorithm implemented in the `Player` class as `classmethod`
+- [x] Custom sorting algorithm sorts in descending order
+- [x] Custom sorting algorithm compares players using their score (via the rich comparison operators)
+- [x] Custom sorting algorithm tested in `test_player.py` and tests passed
+- [x] At least one commit capturing the above changes
 
 ### 5.3. Test your custom sorting algorithm at scale
 

@@ -57,3 +57,18 @@ class Player:
 
     def __lt__(self, other):
         return self.score < other.score
+
+    # Use the same classmethod in hash_uid
+    @classmethod
+    def sort_players(cls, players): # Update the variable names to make it clear and descriptive
+        if len(players) <= 1:
+            return players
+        pivot = players[0]
+        left = []
+        right = []
+        for player in players[1:]:
+            if player < pivot:
+                left.append(player)
+            else:
+                right.append(player)
+        return Player.sort_players(left) + [pivot] + Player.sort_players(right)
