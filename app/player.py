@@ -1,3 +1,5 @@
+import random
+
 class Player:
     def __init__(self, uid, name, score=0):
         self.uid = uid
@@ -63,12 +65,15 @@ class Player:
     def sort_players(cls, players): # Update the variable names to make it clear and descriptive
         if len(players) <= 1:
             return players
-        pivot = players[0]
+        pivot = random.choice(players) # Choosing a random player as a pivot
         left = []
+        middle = [] # There is a chance that it will choose the same player
         right = []
-        for player in players[1:]:
+        for player in players:
             if player < pivot:
                 left.append(player)
-            else:
+            elif player > pivot:
                 right.append(player)
-        return Player.sort_players(left) + [pivot] + Player.sort_players(right)
+            else:
+                middle.append(player) # If pivot is same as the player insert in the middle
+        return Player.sort_players(left) + middle + Player.sort_players(right)

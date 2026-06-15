@@ -60,5 +60,15 @@ class TestPlayerFunction(unittest.TestCase):
 
         self.assertListEqual(sorted_players, sorted(players))
 
+    def test_already_1000_players(self):
+        players = [Player(f"{i:03}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
+
+        first_sorted_players = sorted(players)
+
+        again_sorted_players = Player.sort_players(first_sorted_players)
+
+        self.assertListEqual(first_sorted_players, again_sorted_players)
+
+
 if __name__ == "__main__":
     unittest.main()

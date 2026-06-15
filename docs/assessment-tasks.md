@@ -325,6 +325,39 @@ If you get a failure, include the failure below:
 
 ```text
 YOUR FAILURE HERE
+============================== 1 failed in 0.32s ===============================
+FAILED [100%]
+test/player_test.py:63 (TestPlayerFunction.test_already_1000_players)
+self = <test.player_test.TestPlayerFunction testMethod=test_already_1000_players>
+
+    def test_already_1000_players(self):
+        players = [Player(f"{i:03}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
+    
+        first_sorted_players = sorted(players)
+    
+>       final_sorted_players = Player.sort_players(first_sorted_players)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test/player_test.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+app/player.py:74: in sort_players
+    return Player.sort_players(left) + [pivot] + Player.sort_players(right)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/player.py:74: in sort_players
+    return Player.sort_players(left) + [pivot] + Player.sort_players(right)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+A Lot of these ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Player: Player 117 - uid: 117, score: 975
+other = Player: Player 815 - uid: 815, score: 973
+
+    def __lt__(self, other):
+>       return self.score < other.score
+               ^^^^^^^^^^
+E       RecursionError: maximum recursion depth exceeded
+
+app/player.py:59: RecursionError
 ```
 
 ##### 5.3.4.1 Question: Why does the algorithm fail on presorted values?
@@ -333,22 +366,42 @@ Provide a reason why this test failed (if you got a recursion errors, you need t
 
 If your implementation did not fail, you must nevertheless explain why the senior developers algorithm has worse space complexity for presorted values.
 
-> Answer here
+> The test showed a Recurision error where the maximum recursion depth exceeded, as I mentioned early about the space handling of the algrithm its very efficient when the pivot is random but in the case where
+> list is already sorted the pivot is always the smallest thus it will run sort on how many players are there in this case is 1000.
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
 # YOUR FIX HERE
 # Highlight what the fix was
+import random
+
+# Use the same classmethod in hash_uid
+@classmethod
+def sort_players(cls, players): # Update the variable names to make it clear and descriptive
+    if len(players) <= 1:
+        return players
+    pivot = random.choice(players) # Choosing a random player as a pivot
+    left = []
+    middle = [] # There is a chance that it will choose the same player
+    right = []
+    for player in players:
+        if player < pivot:
+            left.append(player)
+        elif player > pivot:
+            right.append(player)
+        else:
+            middle.append(player) # If pivot is same as the player insert in the middle
+    return Player.sort_players(left) + middle + Player.sort_players(right)
 ```
 
 #### 5.3.5. Success criteria
 
-- [ ] Test case added to `test_player.py`
-- [ ] Test case passes only when changes above are added
-- [ ] Explanation of why the algorithm fails on presorted values
-- [ ] Fix to the algorithm provided
-- [ ] At least one commit capturing the above changes
+- [x] Test case added to `test_player.py`
+- [x] Test case passes only when changes above are added
+- [x] Explanation of why the algorithm fails on presorted values
+- [x] Fix to the algorithm provided
+- [x] At least one commit capturing the above changes
 
 ## 6. Task: Authenticity of in class work
 
