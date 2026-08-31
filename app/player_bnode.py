@@ -1,12 +1,12 @@
 
+class PlayerBNode:
+    def __init__(self, player):
+        # store the player in this node
+        self._player = player
 
-def __init__(self, player):
-    # store the player in this node
-    self._player = player
-
-    # pointers for the left and right subtrees, none to start
-    self._left = None
-    self._right = None
+        # pointers for the left and right subtrees, none to start
+        self._left = None
+        self._right = None
 
     @property
     def player(self):
