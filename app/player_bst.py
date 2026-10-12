@@ -1,3 +1,5 @@
+from enum import nonmember
+
 from app.player_bnode import PlayerBNode
 
 class PlayerBST:
@@ -46,4 +48,39 @@ class PlayerBST:
         if name < node.player.name: # to make it recursive, go left if smaller and go right if its bigger
             return self._search_recursive(node.left, name)
         return self._search_recursive(node.right, name)
+
+    def get_sorted_players(self):
+        players = []
+        self._in_order_recursive(self._root, players)
+        return players
+
+    def _in_order_recursive(self, node, players): # Normal Case, nothing to visit
+        if node is None:
+            return
+
+        self._in_order_recursive(node.left, players)
+        players.append(node.player)
+        self._in_order_recursive(node.right, players)
+
+    def balance(self): # Build the tree again as a balances binary tree using the sorted list of players
+        sorted_players = self.get_sorted_players()
+        self._root = self._build_balanced(sorted_players, 0, len(sorted_players) - 1)
+
+    def _build_balanced(self, players, start, end): # base case when there is no elements left in this section of the list
+        if start > end:
+            return None
+
+        # pick the middle element and make it as the root of the tree
+        middle = (start + end) // 2
+        node = PlayerBNode(players[middle])
+
+        # then do the same for left and right, do it recursively
+        # 1. Get the middle of the left and make it the left child of the root from step b. (from the assessment)
+        node.left = self._build_balanced(players, start, middle - 1)
+        # 2. Get the middle of the right and make it the right child of the root from step b. (from the assessment)
+        node.right = self._build_balanced(players, middle + 1, end)
+
+        return node
+
+
 
