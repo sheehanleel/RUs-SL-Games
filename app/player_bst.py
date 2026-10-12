@@ -37,11 +37,11 @@ class PlayerBST:
         return self._search_recursive(self._root, name)
 
     def _search_recursive(self, node, name):
-        if node is None: # the search has reached an empty spot, then the name is not on the tree
-            return None
+        if node is None or node.player.name == name: # the search has reached an empty spot, then the name is not on the tree
+            return node
 
         if node.player.name == name: # if name found in the tree, it will be stored in this node
-            return node.player
+            return node
 
         if name < node.player.name: # to make it recursive, go left if smaller and go right if its bigger
             return self._search_recursive(node.left, name)
