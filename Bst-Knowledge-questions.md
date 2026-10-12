@@ -21,3 +21,12 @@ In your own words, describe how an algorithm to find an item in a Binary Search 
 In your own words, describe what a balanced BST is.
 
 > A balanced BST is where left and right subtrees height difference is at most one. For example, if the left subtree has a height of 4 and the right subtree has a height of 2 then it's unbalanced.
+
+
+# Step 8 – Knowledge Question
+With the newly balanced BST, how many steps does it take at most to find an existing item in the
+search tree?
+
+> In the balanced BST, the max amount of steps it will take to find an existing item in the search tree will be log^2(n) + 1.
+> Where the n is the number of nodes. This happens because the height of the tree is reduced efficiently, and each comparison will half the reamining spaces to search
+> e.g 7 players will need 3 steps at most, and on a unbalanced worst case it will do 7 steps.git 
